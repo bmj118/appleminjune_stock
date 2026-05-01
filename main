@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사과민준의 주식매매 공부자료</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --border: #e2ddd6;
+    --text-primary: #1a1814;
+    --text-secondary: #5a544a;
+    --text-muted: #9a9088;
+    --accent: #2d5a3d;
+    --accent-light: #eef4f0;
+    --accent-mid: #4a8c62;
+    --update: #b85c00;
+    --update-bg: #fef3e8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(247, 245, 240, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .header-logo {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .header-quarter {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid #c5deca;
+    border-radius: 20px;
+    padding: 3px 12px;
+    letter-spacing: 0.06em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.8;
+  }
+
+  /* TOC */
+  .toc-section {
+    margin-bottom: 4rem;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .toc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .toc-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+
+  .toc-row:last-child { border-bottom: none; }
+
+  .toc-row:hover {
+    background: var(--accent-light);
+  }
+
+  .toc-row.sub {
+    padding-left: 3.5rem;
+    background: #faf9f7;
+  }
+
+  .toc-row.sub:hover { background: var(--accent-light); }
+
+  .toc-num {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    min-width: 24px;
+    padding-top: 2px;
+    font-family: 'Noto Serif KR', serif;
+  }
+
+  .toc-main-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    flex: 1;
+  }
+
+  .toc-sub-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    flex: 1;
+  }
+
+  .toc-arrow {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-top: 3px;
+    transition: transform 0.15s;
+  }
+
+  .toc-row:hover .toc-arrow { transform: translateX(3px); }
+
+  /* Chapter sections */
+  .chapter {
+    margin-bottom: 5rem;
+    scroll-margin-top: 80px;
+  }
+
+  .chapter-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .chapter-num {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .chapter-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* Sub sections */
+  .sub-section {
+    margin-bottom: 2.5rem;
+    scroll-margin-top: 80px;
+  }
+
+  .sub-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .sub-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background: var(--accent-mid);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .content-placeholder {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 14px;
+    text-align: center;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Update badge */
+  .update-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--update);
+    background: var(--update-bg);
+    border: 1px solid #f0c090;
+    border-radius: 20px;
+    padding: 2px 10px;
+    margin-left: 0.75rem;
+    font-weight: 400;
+  }
+
+  .update-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--update);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Photo area */
+  .photo-area {
+    background: var(--surface);
+    border: 1.5px dashed var(--border);
+    border-radius: 8px;
+    padding: 2.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 1rem;
+  }
+
+  .photo-icon {
+    font-size: 28px;
+    margin-bottom: 0.5rem;
+    display: block;
+    opacity: 0.4;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* Back to top */
+  .back-to-top {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 13px;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+    padding: 6px 16px;
+    border: 1px solid #c5deca;
+    border-radius: 20px;
+    transition: background 0.15s;
+  }
+  .back-to-top:hover { background: var(--accent-light); }
+
+  /* Fade in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero, .toc-section, .chapter {
+    animation: fadeUp 0.5s ease both;
+  }
+  .toc-section { animation-delay: 0.1s; }
+  .chapter:nth-child(1) { animation-delay: 0.15s; }
+  .chapter:nth-child(2) { animation-delay: 0.2s; }
+  .chapter:nth-child(3) { animation-delay: 0.25s; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 26px; }
+    .container { padding: 0 1.25rem; }
+    header { padding: 0 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="header-logo">사과민준 📈</span>
+  <span class="header-quarter">2026 Q3</span>
+</header>
+
+<div class="container">
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-tag">2026 3분기 · 주식매매 공부자료</div>
+    <h1>사과민준의<br>주식매매 공부자료</h1>
+    <p class="hero-desc">직접 공부하고 분석한 내용을 정리한 개인 자료입니다.<br>주기적으로 업데이트되며, 투자 권유가 아닌 학습 목적의 기록입니다.</p>
+  </section>
+
+  <!-- TOC -->
+  <section class="toc-section">
+    <div class="section-eyebrow">목차</div>
+    <div class="toc-card">
+      <a class="toc-row" href="#intro">
+        <span class="toc-num">00</span>
+        <span class="toc-main-text">서론 — 이 글을 읽어주시는 분들께</span>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row" href="#ch1">
+        <span class="toc-num">01</span>
+        <span class="toc-main-text">나의 관점</span>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row sub" href="#ch1-1">
+        <span class="toc-num">—</span>
+        <span class="toc-sub-text">매매 전략 및 수익화 방향, 그리고 장단점</span>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row sub" href="#ch1-2">
+        <span class="toc-num">—</span>
+        <span class="toc-sub-text">2026 3분기 및 향후 주식시장 방향성 견해</span>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row sub" href="#ch1-3">
+        <span class="toc-num">—</span>
+        <span class="toc-sub-text">향후 계획 및 보완점</span>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row" href="#ch2">
+        <span class="toc-num">02</span>
+        <span class="toc-main-text">2026 3분기 주식시장 분석</span>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row sub" href="#ch2-1">
+        <span class="toc-num">—</span>
+        <span class="toc-sub-text">국내증시</span>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row sub" href="#ch2-2">
+        <span class="toc-num">—</span>
+        <span class="toc-sub-text">해외증시</span>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row sub" href="#ch2-3">
+        <span class="toc-num">—</span>
+        <span class="toc-sub-text">민준픽 &amp; 근거</span>
+        <span class="toc-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 서론 -->
+  <section class="chapter" id="intro">
+    <div class="chapter-header">
+      <span class="chapter-num">서론</span>
+      <h2 class="chapter-title">이 글을 읽어주시는 분들께</h2>
+    </div>
+    <div class="content-placeholder">
+      ✏️ 여기에 서론 내용을 작성하세요
+    </div>
+  </section>
+
+  <!-- 1장 -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-header">
+      <span class="chapter-num">1장</span>
+      <h2 class="chapter-title">나의 관점</h2>
+    </div>
+
+    <div class="sub-section" id="ch1-1">
+      <div class="sub-title">매매 전략 및 수익화 방향, 그리고 장단점</div>
+      <div class="content-placeholder">✏️ 내용 작성</div>
+      <div class="photo-area">
+        <span class="photo-icon">🖼</span>
+        사진을 여기에 추가하세요<br>
+        <code style="font-size:11px; margin-top:4px; display:block;">&lt;img src="images/사진.jpg" alt="설명"&gt;</code>
+      </div>
+    </div>
+
+    <div class="sub-section" id="ch1-2">
+      <div class="sub-title">2026 3분기 및 향후 주식시장 방향성 견해</div>
+      <div class="content-placeholder">✏️ 내용 작성</div>
+    </div>
+
+    <div class="sub-section" id="ch1-3">
+      <div class="sub-title">향후 계획 및 보완점</div>
+      <div class="content-placeholder">✏️ 내용 작성</div>
+    </div>
+  </section>
+
+  <!-- 2장 -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-header">
+      <span class="chapter-num">2장</span>
+      <h2 class="chapter-title">2026 3분기 주식시장 분석</h2>
+    </div>
+
+    <div class="sub-section" id="ch2-1">
+      <div class="sub-title">
+        국내증시
+        <span class="update-tag"><span class="update-dot"></span>주기적 업데이트</span>
+      </div>
+      <div class="content-placeholder">✏️ 내용 작성</div>
+    </div>
+
+    <div class="sub-section" id="ch2-2">
+      <div class="sub-title">
+        해외증시
+        <span class="update-tag"><span class="update-dot"></span>주기적 업데이트</span>
+      </div>
+      <div class="content-placeholder">✏️ 내용 작성</div>
+    </div>
+
+    <div class="sub-section" id="ch2-3">
+      <div class="sub-title">
+        민준픽 &amp; 근거
+        <span class="update-tag"><span class="update-dot"></span>주기적 업데이트</span>
+      </div>
+      <div class="content-placeholder">✏️ 내용 작성</div>
+    </div>
+  </section>
+
+  <div style="text-align:center;">
+    <a class="back-to-top" href="#top">↑ 맨 위로</a>
+  </div>
+
+  <footer>
+    <p>© 2026 사과민준 — 개인 학습 목적의 기록입니다. 투자 권유가 아닙니다.</p>
+  </footer>
+
+</div>
+</body>
+</html>
