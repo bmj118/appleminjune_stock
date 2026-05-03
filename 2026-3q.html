@@ -143,7 +143,7 @@
     </div>
 
     <div class="stock-grid">
-      <a class="stock-btn has-content" onclick="showStock('hyundai'); return false;" href="#">
+      <a class="stock-btn has-content" href="hyundai.html">
         <span class="stock-name">현대자동차</span>
         <span class="stock-tag">분석 완료</span>
       </a>
@@ -180,16 +180,7 @@
         <span class="stock-tag">작성 예정</span>
       </div>
     </div>
-
-    <!-- 현대차 상세 -->
-    <div class="stock-detail" id="detail-hyundai">
-      <div class="close-btn" onclick="closeStock()">✕ 닫기</div>
-      <div class="post-card">
-        <div class="post-header">
-          <div>
-            <div class="post-ticker">현대자동차 <span style="font-size:13px; font-weight:400; color:var(--text-muted);">005380 · KOSPI</span></div>
-            <div class="post-sub">휴머노이드 로봇 · 국내증시</div>
-          </div>
+  </div>
           <span class="post-date">2026.05</span>
         </div>
         <div class="post-images">
@@ -233,18 +224,6 @@
 <footer>© 2026 사과민준 — 개인 학습 목적의 기록입니다. 투자 권유가 아닙니다.</footer>
 
 <script>
-  function showStock(id) {
-    document.querySelectorAll('.stock-detail').forEach(el => el.classList.remove('active'));
-    const detail = document.getElementById('detail-' + id);
-    if (detail) {
-      detail.classList.add('active');
-      setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
-    }
-  }
-  function closeStock() {
-    document.querySelectorAll('.stock-detail').forEach(el => el.classList.remove('active'));
-  }
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.06 });
