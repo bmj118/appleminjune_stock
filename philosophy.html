@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주식을 대하는 방법 — 사과민준</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0; --surface: #ffffff; --border: #e2ddd6;
+    --text-primary: #1a1814; --text-secondary: #5a544a; --text-muted: #9a9088;
+    --accent: #2d5a3d; --accent-light: #eef4f0; --accent-mid: #4a8c62;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.8; }
+
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,245,240,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px;
+  }
+  .back-btn { font-size: 13px; color: var(--accent); text-decoration: none; padding: 4px 12px; border: 1px solid #c5deca; border-radius: 20px; transition: background 0.15s; }
+  .back-btn:hover { background: var(--accent-light); }
+  .header-logo { font-family: 'Noto Serif KR', serif; font-size: 14px; font-weight: 600; color: var(--accent); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 4rem 2rem; }
+
+  .hero { margin-bottom: 4rem; opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+  .hero.visible { opacity: 1; transform: translateY(0); }
+  .hero-tag { display: inline-block; font-size: 11px; color: var(--accent); background: var(--accent-light); border: 1px solid #c5deca; border-radius: 20px; padding: 3px 12px; letter-spacing: 0.06em; margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Noto Serif KR', serif; font-size: 32px; font-weight: 600; line-height: 1.4; margin-bottom: 0.75rem; }
+  .hero-desc { font-size: 14px; color: var(--text-secondary); }
+
+  .section { margin-bottom: 4rem; opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; scroll-margin-top: 80px; }
+  .section.visible { opacity: 1; transform: translateY(0); }
+
+  .section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--accent); }
+  .section-num { font-family: 'Noto Serif KR', serif; font-size: 12px; color: var(--accent); font-weight: 600; }
+  .section-title { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 600; }
+
+  .sub-section { margin-bottom: 2rem; scroll-margin-top: 80px; }
+  .sub-title { font-size: 16px; font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+  .sub-title::before { content: ''; display: inline-block; width: 4px; height: 15px; background: var(--accent-mid); border-radius: 2px; flex-shrink: 0; }
+
+  .body-text { font-size: 15px; color: var(--text-secondary); line-height: 1.95; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem; }
+  .body-text strong { color: var(--text-primary); font-weight: 500; }
+  .body-text h3 { font-size: 16px; font-weight: 500; margin-bottom: 0.75rem; color: var(--text-primary); }
+
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 2rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back-btn" href="index.html">← 목록으로</a>
+  <span class="header-logo">주식을 대하는 방법 🍎</span>
+  <span style="width:80px;"></span>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-tag">사과민준의 투자 철학</div>
+    <h1>주식을 대하는 방법</h1>
+    <p class="hero-desc">매매 방식, 종목을 고르는 기준, 그리고 시장을 바라보는 저만의 관점을 정리했습니다.</p>
+  </div>
+
+  <!-- 서론 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">서론</span>
+      <h2 class="section-title">이 글을 읽어주시는 분들께</h2>
+    </div>
+    <div class="body-text">
+      <p>이 글은 21년밖에 살지 않은 사람이 작성한 자료입니다. 제 말이 모두 옳다는 보장은 없으며, 투자에 관한 모든 판단과 책임은 본인에게 있습니다. 이 글은 투자 권유를 목적으로 하지 않습니다.</p>
+      <br>
+      <p>최근 몇 년간 주식시장의 흐름이 좋았고, 저는 운 좋게도 수익을 거뒀습니다. 다만 시장이 좋다고 해서 모든 종목이 오르는 것은 아닙니다. 그 속에서도 저는 매매 이유, 미래 방향성, 재무제표 등을 직접 분석하고 판단하여 매매해왔습니다.</p>
+      <br>
+      <p>이 글에서는 제가 매매해온 방식과 근거, 그리고 시장을 바라보는 저의 관점을 정리해보겠습니다.</p>
+      <br>
+      <p>그럼 시작하겠습니다.</p>
+    </div>
+  </div>
+
+  <!-- 1장 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">1장</span>
+      <h2 class="section-title">나의 관점</h2>
+    </div>
+
+    <div class="sub-section">
+      <div class="sub-title">매매 전략 및 수익화 방향, 그리고 장단점</div>
+      <div class="body-text">
+        <p>저는 기본적으로 단타와 장투의 중간인 <strong>스윙매매</strong>를 합니다.</p>
+        <br>
+        <p>단타는 몇 분, 몇 시간 안에 수익을 낼 수 있다는 장점이 있지만 위험도가 너무 높습니다. 장투는 수년~수십 년에 걸쳐 안정적으로 수익을 얻을 수 있다는 장점이 있지만, 초기 시드가 적을 경우 비효율적이라는 단점이 있습니다.</p>
+        <br>
+        <p>스윙매매는 뉴스와 정책 방향을 분석해 1~3개월 안에 주목받을 테마와 종목을 찾아 반복 매매하는 방식으로, 상대적으로 안정적으로 시드를 불려나가는 방법입니다.</p>
+        <br>
+        <h3>제가 종목을 고를 때 가장 중요하게 보는 3가지</h3>
+        <p><strong>1. 그 회사가 속한 분야의 전체 파이 크기와 성장 가능성</strong></p>
+        <br>
+        <p>아무리 해당 분야를 독점하는 회사라도, 분야 자체의 수익성이 낮거나 성장 가능성이 미미하다면 투자 매력이 없습니다. 독점에 가까울수록 오히려 경쟁이 없어 기술 발전이 더디고, 추가 성장도 기대하기 어렵기 때문입니다.</p>
+        <br>
+        <p><strong>2. 그 회사의 기술력과 대체 가능성</strong></p>
+        <br>
+        <p>예를 들어 엔비디아에 전자기판을 납품하는 회사가 삼성전기라고 가정해보겠습니다. 만약 해당 기판 제조에 특별한 기술력이 필요하지 않다면, 중국 경쟁사가 절반 가격에 납품을 제안하는 순간 삼성전기의 매출은 순식간에 0이 될 수 있습니다. 기술력이 낮은 분야는 언제든 대체될 위험이 있습니다.</p>
+        <br>
+        <p>여기서 중요한 건 단순한 기술력뿐만 아니라 <strong>세부 분야에서의 차별성</strong>입니다. 삼성전기는 로봇 시각정보처리 기판, LG이노텍은 로봇 관절 제어 기판에 특화되어 있다면 두 회사는 경쟁이 아닌 공존 관계가 됩니다.</p>
+        <br>
+        <p><strong>3. 그 회사의 방향성과 문제 대처 능력</strong></p>
+        <br>
+        <p>과거 CD 시장이 무너졌을 때, CD로 게임을 팔던 많은 회사들은 함께 사라졌습니다. 그러나 닌텐도는 자체 게임기를 출시하고 플랫폼을 다양화하며 위기를 돌파했습니다. 예상치 못한 변화가 와도 살아남을 수 있는 회사인지 반드시 확인합니다.</p>
+        <br>
+        <h3>스윙이지만 장투하는 마음으로</h3>
+        <p>스윙매매는 먼 미래를 바라보는 투자가 아닙니다. 그럼에도 저는 항상 장투하는 마음가짐으로 종목을 고릅니다. 소위 말해 "물렸을 때도 발 뻗고 잘 수 있는 회사"에만 투자하기 위해서입니다. 그렇기에 저는 만반의 준비를 마친 후에 투자에 나섭니다.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <div class="sub-title">2026 3분기 및 향후 주식시장 방향성 견해</div>
+      <div class="body-text" style="color:var(--text-muted); text-align:center; min-height:80px; display:flex; align-items:center; justify-content:center;">작성 예정</div>
+    </div>
+
+    <div class="sub-section">
+      <div class="sub-title">향후 계획 및 보완점</div>
+      <div class="body-text" style="color:var(--text-muted); text-align:center; min-height:80px; display:flex; align-items:center; justify-content:center;">작성 예정</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>© 2026 사과민준 — 개인 학습 목적의 기록입니다. 투자 권유가 아닙니다.</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.hero, .section').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

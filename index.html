@@ -15,9 +15,9 @@
     --text-muted: #9a9088;
     --accent: #2d5a3d;
     --accent-light: #eef4f0;
-    --red-apple: #c0392b;
-    --red-apple-light: #fdf0ef;
-    --red-apple-border: #e8a59f;
+    --red: #c0392b;
+    --red-light: #fdf0ef;
+    --red-border: #e8a59f;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -31,54 +31,70 @@
   }
   .header-logo { font-family: 'Noto Serif KR', serif; font-size: 15px; font-weight: 600; color: var(--accent); }
 
-  .hero { padding: 5rem 2rem 3rem; max-width: 900px; margin: 0 auto; }
-  .hero-eyebrow { font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; }
-  .hero h1 { font-family: 'Noto Serif KR', serif; font-size: 40px; font-weight: 600; line-height: 1.35; color: var(--text-primary); margin-bottom: 1rem; }
-  .hero-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 3rem; }
+  .container { max-width: 680px; margin: 0 auto; padding: 4rem 2rem 4rem; }
 
-  .legend { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
-  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
-  .apple-icon { font-size: 18px; line-height: 1; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; }
+  h1 { font-family: 'Noto Serif KR', serif; font-size: 36px; font-weight: 600; line-height: 1.35; margin-bottom: 0.75rem; }
+  .hero-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2.5rem; }
 
-  .year-group { margin-bottom: 3.5rem; opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  /* Philosophy button */
+  .philosophy-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: white;
+    font-size: 14px; font-weight: 500;
+    padding: 10px 20px; border-radius: 24px;
+    text-decoration: none; margin-bottom: 3rem;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .philosophy-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* Legend */
+  .legend { display: flex; gap: 1.25rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
+
+  /* Year group */
+  .year-group { margin-bottom: 2.5rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .year-group.visible { opacity: 1; transform: translateY(0); }
-  .year-label { font-family: 'Noto Serif KR', serif; font-size: 13px; color: var(--text-muted); letter-spacing: 0.06em; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .year-label { font-size: 12px; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
 
-  .quarter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  @media (min-width: 600px) { .quarter-grid { grid-template-columns: repeat(4, 1fr); } }
+  /* Quarter list */
+  .quarter-list { display: flex; flex-direction: column; gap: 0.5rem; }
 
-  .q-card {
-    border-radius: 14px; border: 1.5px solid var(--border);
-    background: var(--surface); padding: 1.5rem 1rem;
-    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
-    cursor: default; transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative; overflow: hidden;
+  .q-row {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
   }
-  .q-card.inactive { opacity: 0.55; }
-  .q-card.active {
-    border-color: var(--red-apple-border);
-    background: var(--red-apple-light);
+
+  .q-row.active {
+    border-color: var(--red-border);
+    background: var(--red-light);
     cursor: pointer;
-    box-shadow: 0 2px 12px rgba(192,57,43,0.08);
   }
-  .q-card.active:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(192,57,43,0.15); }
-  .q-card.active:active { transform: translateY(-1px); }
+  .q-row.active:hover { transform: translateX(4px); box-shadow: 0 2px 12px rgba(192,57,43,0.1); }
 
-  .q-apple { font-size: 34px; line-height: 1; transition: transform 0.2s ease; }
-  .q-card.active:hover .q-apple { transform: scale(1.12) rotate(-6deg); }
+  .q-row.ended { opacity: 0.45; cursor: not-allowed; }
+  .q-row.upcoming { opacity: 0.5; cursor: not-allowed; }
 
-  .q-label { font-size: 13px; font-weight: 500; color: var(--text-primary); text-align: center; }
-  .q-card.inactive .q-label { color: var(--text-muted); }
-  .q-status { font-size: 11px; color: var(--text-muted); }
-  .q-card.active .q-status { color: var(--red-apple); font-weight: 500; }
+  .q-apple { font-size: 22px; flex-shrink: 0; }
+  .q-name { font-size: 14px; font-weight: 500; flex: 1; }
+  .q-row.ended .q-name { color: var(--text-muted); }
+  .q-row.upcoming .q-name { color: var(--text-muted); }
 
-  .q-badge {
-    position: absolute; top: 8px; right: 8px;
-    font-size: 9px; background: var(--red-apple); color: white;
-    border-radius: 10px; padding: 2px 7px; letter-spacing: 0.04em;
+  .q-tag {
+    font-size: 11px; padding: 2px 9px; border-radius: 12px;
+    font-weight: 500;
   }
+  .tag-ended { background: #f0ede8; color: var(--text-muted); }
+  .tag-active { background: var(--red); color: white; }
+  .tag-upcoming { background: #eef4f0; color: #6aab7a; }
 
-  footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 2rem; }
+  .q-arrow { font-size: 13px; color: var(--red); opacity: 0; transition: opacity 0.15s; }
+  .q-row.active:hover .q-arrow { opacity: 1; }
+
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 1rem; }
 </style>
 </head>
 <body>
@@ -87,52 +103,69 @@
   <span class="header-logo">사과민준 주식파트 🍎</span>
 </header>
 
-<div class="hero">
+<div class="container">
   <div class="hero-eyebrow">Apple Minjun · Stock Research</div>
   <h1>분기별 주식<br>매매 공부자료</h1>
   <p class="hero-desc">각 분기별로 직접 분석하고 정리한 주식 공부자료입니다.<br>투자 권유가 아닌 개인 학습 목적의 기록입니다.</p>
 
+  <a class="philosophy-btn" href="philosophy.html">🍎 주식을 대하는 방법</a>
+
   <div class="legend">
-    <div class="legend-item"><span class="apple-icon">🍎</span><span>열람 가능</span></div>
-    <div class="legend-item"><span class="apple-icon">🍏</span><span>작성 예정</span></div>
+    <div class="legend-item">🍎 <span>열람 가능</span></div>
+    <div class="legend-item">🍂 <span>종료</span></div>
+    <div class="legend-item">🍏 <span>미작성</span></div>
   </div>
 
+  <!-- 2026 -->
   <div class="year-group">
     <div class="year-label">2026</div>
-    <div class="quarter-grid">
-      <div class="q-card active" onclick="window.location.href='2026-3q.html'">
-        <span class="q-badge">열람 가능</span>
+    <div class="quarter-list">
+      <div class="q-row ended">
+        <span class="q-apple">🍂</span>
+        <span class="q-name">2026 1분기</span>
+        <span class="q-tag tag-ended">종료</span>
+      </div>
+      <div class="q-row ended">
+        <span class="q-apple">🍂</span>
+        <span class="q-name">2026 2분기</span>
+        <span class="q-tag tag-ended">종료</span>
+      </div>
+      <div class="q-row active" onclick="window.location.href='2026-3q.html'">
         <span class="q-apple">🍎</span>
-        <span class="q-label">2026 3분기</span>
-        <span class="q-status">게시됨</span>
+        <span class="q-name">2026 3분기</span>
+        <span class="q-tag tag-active">열람 가능</span>
+        <span class="q-arrow">→</span>
       </div>
-      <div class="q-card inactive">
+      <div class="q-row upcoming">
         <span class="q-apple">🍏</span>
-        <span class="q-label">2026 4분기</span>
-        <span class="q-status">작성 예정</span>
-      </div>
-      <div class="q-card inactive">
-        <span class="q-apple">🍏</span>
-        <span class="q-label">2026 1분기</span>
-        <span class="q-status">작성 예정</span>
-      </div>
-      <div class="q-card inactive">
-        <span class="q-apple">🍏</span>
-        <span class="q-label">2026 2분기</span>
-        <span class="q-status">작성 예정</span>
+        <span class="q-name">2026 4분기</span>
+        <span class="q-tag tag-upcoming">미작성</span>
       </div>
     </div>
   </div>
 
+  <!-- 2027 -->
   <div class="year-group">
     <div class="year-label">2027</div>
-    <div class="quarter-grid">
-      <div class="q-card inactive"><span class="q-apple">🍏</span><span class="q-label">2027 1분기</span><span class="q-status">작성 예정</span></div>
-      <div class="q-card inactive"><span class="q-apple">🍏</span><span class="q-label">2027 2분기</span><span class="q-status">작성 예정</span></div>
-      <div class="q-card inactive"><span class="q-apple">🍏</span><span class="q-label">2027 3분기</span><span class="q-status">작성 예정</span></div>
-      <div class="q-card inactive"><span class="q-apple">🍏</span><span class="q-label">2027 4분기</span><span class="q-status">작성 예정</span></div>
+    <div class="quarter-list">
+      <div class="q-row upcoming"><span class="q-apple">🍏</span><span class="q-name">2027 1분기</span><span class="q-tag tag-upcoming">미작성</span></div>
+      <div class="q-row upcoming"><span class="q-apple">🍏</span><span class="q-name">2027 2분기</span><span class="q-tag tag-upcoming">미작성</span></div>
+      <div class="q-row upcoming"><span class="q-apple">🍏</span><span class="q-name">2027 3분기</span><span class="q-tag tag-upcoming">미작성</span></div>
+      <div class="q-row upcoming"><span class="q-apple">🍏</span><span class="q-name">2027 4분기</span><span class="q-tag tag-upcoming">미작성</span></div>
     </div>
   </div>
+
+  <!-- 2028 -->
+  <div class="year-group">
+    <div class="year-label">2028</div>
+    <div class="quarter-list">
+      <div class="q-row upcoming"><span class="q-apple">🍏</span><span class="q-name">2028 1분기</span><span class="q-tag tag-upcoming">미작성</span></div>
+      <div class="q-row upcoming"><span class="q-apple">🍏</span><span class="q-name">2028 2분기</span><span class="q-tag tag-upcoming">미작성</span></div>
+      <div class="q-row upcoming"><span class="q-apple">🍏</span><span class="q-name">2028 3분기</span><span class="q-tag tag-upcoming">미작성</span></div>
+      <div class="q-row upcoming"><span class="q-apple">🍏</span><span class="q-name">2028 4분기</span><span class="q-tag tag-upcoming">미작성</span></div>
+    </div>
+  </div>
+
 </div>
 
 <footer>© 2026 사과민준 — 개인 학습 목적의 기록입니다. 투자 권유가 아닙니다.</footer>
@@ -140,9 +173,9 @@
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05 });
   document.querySelectorAll('.year-group').forEach((el, i) => {
-    el.style.transitionDelay = (i * 0.15) + 's';
+    el.style.transitionDelay = (i * 0.12) + 's';
     observer.observe(el);
   });
 </script>
